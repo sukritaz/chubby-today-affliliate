@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+/* ---- design tokens (notebook ink theme) -------------------------------- */
+@theme {
+  --color-ink: #1f1a14;
+  --color-ink-soft: #3a2f22;
+  --color-ink-faint: #6b5d4a;
+  --color-paper: #f4ecda;
+  --color-paper-shade: #ede5d2;
+  --color-card: #ffffff;
+  --color-frame: #e7dfcd;
+
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --radius-page: 18px;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background:
+    radial-gradient(1400px 800px at 50% -10%, #fbf6ea 0%, #efe6d3 55%, #e7dcc6 100%)
+    fixed;
+}
+
+/* subtle paper grain on the page surface */
+.paper-grain {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(31, 26, 20, 0.025) 0px,
+      rgba(31, 26, 20, 0.025) 1px,
+      transparent 1px,
+      transparent 26px
+    );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
