@@ -3,6 +3,12 @@ import { ExtArrow } from "./Doodles";
 
 const isExternal = (url: string) => /^https?:\/\//i.test(url);
 
+// Local images ("/images/x.png") must be served from the Vite base path so
+// they work both on "/" (dev) and "/<repo>/" (GitHub Pages). External URLs
+// pass through untouched.
+const asset = (src: string) =>
+  isExternal(src) ? src : import.meta.env.BASE_URL + src.replace(/^\//, "");
+
 export function ProductCard({ item, index }: { item: Item; index: number }) {
   const external = isExternal(item.url);
   // alternate the polaroid tilt; reset to straight on hover/focus
@@ -32,7 +38,7 @@ export function ProductCard({ item, index }: { item: Item; index: number }) {
       <div className="mb-2.5 flex aspect-square items-center justify-center overflow-hidden rounded-[2px] bg-paper-shade">
         {item.image ? (
           <img
-            src={item.image}
+            src={asset(item.image)}
             alt={item.title}
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
