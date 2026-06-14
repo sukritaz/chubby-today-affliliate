@@ -5,7 +5,7 @@ import { HeroArt, HeroUnderline, AboutIcon } from "./Doodles";
 export function Hero({ data }: { data: SiteData }) {
   return (
     <header className="mx-auto max-w-2xl text-center">
-      <div className="mb-1 origin-bottom scale-110 sm:scale-125">
+      <div className="mb-2 origin-bottom scale-[1.35] sm:scale-150">
         <HeroArt />
       </div>
 

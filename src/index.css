@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* make the dark: variant follow the .dark class (not the OS media query) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ---- design tokens (notebook ink theme) -------------------------------- */
 @theme {
   --color-ink: #1f1a14;
@@ -16,6 +19,28 @@
   --radius-page: 18px;
 }
 
+/* ---- dark theme: cozy night-notebook (warm dark paper, cream ink) ------- *
+ * Same tokens, inverted values. Every bg-paper / text-ink / etc. flips
+ * automatically because the utilities read these CSS variables.
+ * ------------------------------------------------------------------------- */
+:root {
+  --grain: rgba(31, 26, 20, 0.025);
+  --body-grad: radial-gradient(1400px 800px at 50% -10%, #fbf6ea 0%, #efe6d3 55%, #e7dcc6 100%);
+}
+
+/* dark MUST come after :root so it wins at equal specificity */
+.dark {
+  --color-ink: #f1e7d4;        /* warm cream text       */
+  --color-ink-soft: #d6cab2;
+  --color-ink-faint: #9f927b;
+  --color-paper: #2f2820;      /* warm espresso page    */
+  --color-paper-shade: #3c352b;/* image placeholder     */
+  --color-card: #39312a;       /* dark polaroid (lifts) */
+  --color-frame: #241d16;
+  --grain: rgba(243, 233, 214, 0.05);
+  --body-grad: radial-gradient(1400px 800px at 50% -10%, #2c2419 0%, #241d15 55%, #1d1610 100%);
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -25,9 +50,8 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   color: var(--color-ink);
-  background:
-    radial-gradient(1400px 800px at 50% -10%, #fbf6ea 0%, #efe6d3 55%, #e7dcc6 100%)
-    fixed;
+  background: var(--body-grad) fixed;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* subtle paper grain on the page surface */
@@ -35,16 +59,42 @@ body {
   background-image:
     repeating-linear-gradient(
       0deg,
-      rgba(31, 26, 20, 0.025) 0px,
-      rgba(31, 26, 20, 0.025) 1px,
+      var(--grain) 0px,
+      var(--grain) 1px,
       transparent 1px,
       transparent 26px
     );
 }
 
+/* ---- entrance animations ----------------------------------------------- */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* applied to cards; stagger delay is set inline per card index */
+.anim-stagger,
+.anim-fade {
+  opacity: 0;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.anim-stagger { animation-name: fade-up; }
+.anim-fade { animation-name: fade-in; }
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
     animation: none !important;
+  }
+  /* never leave reduced-motion users stuck on opacity:0 */
+  .anim-stagger,
+  .anim-fade {
+    opacity: 1 !important;
   }
 }

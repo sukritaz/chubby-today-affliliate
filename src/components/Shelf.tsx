@@ -17,7 +17,9 @@ export function Shelf({ shelf }: { shelf: ShelfType }) {
         <p className="mb-5 text-[13px] italic text-ink-faint">{shelf.subtitle}</p>
       )}
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4">
+      {/* max 6 per row (mobile 2 → sm 3 → md 4 → lg 5 → xl 6).
+          want a 5-max? change xl:grid-cols-6 to xl:grid-cols-5 */}
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {shelf.items.map((item, i) => (
           <ProductCard key={`${shelf.title}-${item.title}-${i}`} item={item} index={i} />
         ))}
