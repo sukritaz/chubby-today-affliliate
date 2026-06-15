@@ -82,7 +82,7 @@ export const SITE: SiteData = {
       icon: "ti-bulb",
       items: [
         { title: "gaming 27 monitor", source: "amazon", url: "https://amzn.to/3Ky61E4", image: "/images/monitor.png", affiliate: true },
-        { title: "standing desk", source: "free download", url: "https://amzn.to/49ZvDn8", image: "/images/standing-desk.jpg", affiliate: true },
+        { title: "standing desk", source: "amazon", url: "https://amzn.to/49ZvDn8", image: "/images/standing-desk.jpg", affiliate: true },
         { title: "monitor arm", source: "amazon", url: "https://amzn.to/3SvzKkR", image: "/images/monitor-arm.jpg", affiliate: true },
         { title: "desk chair", source: "amazon", url: "https://amzn.to/46Px6dk", image: "/images/office-chair.png", affiliate: true },
         { title: "macbook air", source: "amazon", url: "https://amzn.to/4e5rOPS", image: "/images/laptop.png", affiliate: true },
