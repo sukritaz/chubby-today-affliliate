@@ -98,10 +98,10 @@ export const SITE: SiteData = {
       subtitle: "what's keeping me moving",
       icon: "ti-run",
       items: [
-        { title: "treadmill", source: "amazon", url: "https://amzn.to/4x5N67f", affiliate: true },
+        { title: "treadmill", source: "amazon", url: "https://amzn.to/4x5N67f", image: "/images/treadmill.png", affiliate: true },
         { title: "ultrahuman ring air", source: "ultrahuman", url: "https://ultrahuman.com/chubbytoday", image: "/images/ultrahuman-ring.jpg", affiliate: true },
-        { title: "pull up bar", source: "amazon", url: "https://amzn.to/4uAPMHS", affiliate: true },
-        { title: "dumbbell set", source: "amazon", url: "https://amzn.to/43s0FAx", affiliate: true },
+        { title: "pull up bar", source: "amazon", url: "https://amzn.to/4uAPMHS", image: "/images/pull-up-bar.png", affiliate: true },
+        { title: "dumbbell set", source: "amazon", url: "https://amzn.to/43s0FAx", image: "/images/dumbbell.png", affiliate: true },
       ],
     },
   ],
