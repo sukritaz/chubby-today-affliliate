@@ -4,12 +4,14 @@ import { ExtArrow } from "./Doodles";
 
 const isExternal = (url: string) => /^https?:\/\//i.test(url);
 
-// Send a click to GoatCounter as an event. `goatcounter` is injected by the
-// script in index.html; guard in case it hasn't loaded (or is blocked).
+// Send a click to both analytics tools. Both are injected by scripts in
+// index.html; guard each in case it hasn't loaded (or is blocked).
 type GoatCounter = { count: (o: { path: string; title?: string; event?: boolean }) => void };
+type Gtag = (cmd: "event", name: string, params: Record<string, unknown>) => void;
 const trackClick = (item: Item) => {
-  const gc = (window as unknown as { goatcounter?: GoatCounter }).goatcounter;
-  gc?.count({ path: `click-${item.title}`, title: item.title, event: true });
+  const w = window as unknown as { goatcounter?: GoatCounter; gtag?: Gtag };
+  w.goatcounter?.count({ path: `click-${item.title}`, title: item.title, event: true });
+  w.gtag?.("event", "click", { link_title: item.title, link_url: item.url });
 };
 
 // Local images ("/images/x.png") must be served from the Vite base path so

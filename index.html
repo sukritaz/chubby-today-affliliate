@@ -38,6 +38,18 @@
       async
       src="//gc.zgo.at/count.js"
     ></script>
+
+    <!-- Google Analytics 4 (gtag.js). Auto-counts page views; link clicks are
+         sent as `click` events from ProductCard. Nicer dashboard than GoatCounter. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KEGJ6NPV96"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-KEGJ6NPV96");
+    </script>
   </head>
   <body>
     <div id="root"></div>
