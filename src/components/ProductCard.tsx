@@ -4,6 +4,14 @@ import { ExtArrow } from "./Doodles";
 
 const isExternal = (url: string) => /^https?:\/\//i.test(url);
 
+// Send a click to GoatCounter as an event. `goatcounter` is injected by the
+// script in index.html; guard in case it hasn't loaded (or is blocked).
+type GoatCounter = { count: (o: { path: string; title?: string; event?: boolean }) => void };
+const trackClick = (item: Item) => {
+  const gc = (window as unknown as { goatcounter?: GoatCounter }).goatcounter;
+  gc?.count({ path: `click-${item.title}`, title: item.title, event: true });
+};
+
 // Local images ("/images/x.png") must be served from the Vite base path so
 // they work both on "/" (dev) and "/<repo>/" (GitHub Pages). External URLs
 // pass through untouched.
@@ -34,6 +42,7 @@ export function ProductCard({ item, index }: { item: Item; index: number }) {
     <a
       href={item.url}
       {...(external ? { target: "_blank", rel: "noopener sponsored" } : {})}
+      onClick={() => trackClick(item)}
       style={delay}
       className={[
         "group relative block rounded-[4px] bg-card p-2.5 pb-3 no-underline",
