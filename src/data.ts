@@ -101,7 +101,7 @@ export const SITE: SiteData = {
         { title: "treadmill", source: "amazon", url: "https://amzn.to/4x5N67f", image: "/images/treadmill.png", affiliate: true },
         { title: "ultrahuman ring air", source: "ultrahuman", url: "https://ultrahuman.com/chubbytoday", image: "/images/ultrahuman-ring.jpg", affiliate: true },
         { title: "pull up bar", source: "amazon", url: "https://amzn.to/4uAPMHS", image: "/images/pull-up-bar.png", affiliate: true },
-        { title: "dumbbell set", source: "amazon", url: "https://amzn.to/43s0FAx", image: "/images/dumbbell.png", affiliate: true },
+        { title: "dumbbell set", source: "amazon", url: "https://amzn.to/3T8eSQZ", image: "/images/dumbbell.png", affiliate: true },
       ],
     },
   ],
