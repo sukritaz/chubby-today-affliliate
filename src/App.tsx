@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { SITE } from "./data";
+import { useShelves } from "./lib/useShelves";
 import { Hero } from "./components/Hero";
 import { Shelf } from "./components/Shelf";
 import { Divider, DisclosureRule, Doodle } from "./components/Doodles";
@@ -10,7 +11,8 @@ export default function App() {
     document.title = SITE.profile.name;
   }, []);
 
-  const hasAffiliate = SITE.shelves.some((s) => s.items.some((i) => i.affiliate));
+  const shelves = useShelves();
+  const hasAffiliate = !!shelves?.some((s) => s.items.some((i) => i.affiliate));
 
   return (
     <div className="relative min-h-dvh overflow-hidden px-4 py-8 sm:px-8 lg:py-12">
@@ -43,11 +45,13 @@ export default function App() {
 
           <Divider dot className="my-9 lg:my-12" />
 
-          <div className="flex flex-col gap-12">
-            {SITE.shelves.map((shelf, i) => (
-              <div key={shelf.title} className="flex flex-col gap-12">
+          {/* empty, page-tall box while the one request is in flight (~0.2s)
+              so the footer doesn't jump when products arrive */}
+          <div className="flex min-h-[60vh] flex-col gap-12" aria-busy={!shelves}>
+            {shelves?.map((shelf, i) => (
+              <div key={shelf.id ?? shelf.title} className="flex flex-col gap-12">
                 <Shelf shelf={shelf} />
-                {i < SITE.shelves.length - 1 && <Divider dot />}
+                {i < shelves.length - 1 && <Divider dot />}
               </div>
             ))}
           </div>

@@ -1,12 +1,12 @@
 /* ============================================================================
-   data.ts — THE ONLY FILE YOU EDIT to manage your page + affiliate links.
+   data.ts — profile, about, disclosure + animation settings for the page.
    ----------------------------------------------------------------------------
-   Edit, save. Vite hot-reloads instantly — no refresh needed in dev.
+   SHELVES + PRODUCTS NOW LIVE IN SUPABASE. Manage them from any device at
+   /admin.html — changes show up on the next page load, no deploy.
 
-   ADD AN AFFILIATE LINK:
-     1. Pick a shelf below (or add a new one).
-     2. Drop a new { ... } into its `items` array.
-     3. Set `url` to your affiliate link.
+   The `shelves` below are only a fallback: the page shows them if Supabase
+   isn't configured or can't be reached. They were copied into
+   the database by supabase/seed.sql and won't sync back automatically.
 
    ITEM FIELDS:
      title      (required) product name on the card
@@ -18,6 +18,7 @@
 ============================================================================ */
 
 export type Item = {
+  id?: string; // database id; absent on fallback data
   title: string;
   url: string;
   source?: string;
@@ -27,6 +28,7 @@ export type Item = {
 };
 
 export type Shelf = {
+  id?: string; // database id; absent on fallback data
   title: string;
   subtitle?: string;
   icon?: string; // Tabler icon name, e.g. "ti-bulb" — https://tabler.io/icons
