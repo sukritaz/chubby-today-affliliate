@@ -21,7 +21,7 @@ export function Shelf({ shelf }: { shelf: ShelfType }) {
           want a 5-max? change xl:grid-cols-6 to xl:grid-cols-5 */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {shelf.items.map((item, i) => (
-          <ProductCard key={`${shelf.title}-${item.title}-${i}`} item={item} index={i} />
+          <ProductCard key={item.id ?? `${shelf.title}-${item.title}-${i}`} item={item} index={i} />
         ))}
       </div>
     </section>
