@@ -70,6 +70,7 @@ export function ProductCard({ item, index }: { item: Item; index: number }) {
             src={asset(item.image)}
             alt={item.title}
             loading="lazy"
+            decoding="async"
             className={[
               "h-full w-full object-cover transition-transform duration-300",
               cardHover === "zoom" ? "group-hover:scale-110" : "group-hover:scale-105",
